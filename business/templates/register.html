@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{page_details.page_title}}</title>
+    <!-- Bootstrap CSS -->
+    <!--    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!--    <style>-->
+    <!--        /* Custom styles for login page */-->
+    <!--        body {-->
+    <!--            background-color: #f8f9fa;-->
+    <!--        }-->
+    <!--        .login-container {-->
+    <!--            margin-top: 5%;-->
+    <!--        }-->
+    <!--        .card {-->
+    <!--            border: none;-->
+    <!--            border-radius: 10px;-->
+    <!--            box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.1);-->
+    <!--        }-->
+    <!--        .card-header {-->
+    <!--            background-color: #007bff;-->
+    <!--            color: #fff;-->
+    <!--            border-radius: 10px 10px 0 0;-->
+    <!--            text-align: center;-->
+    <!--            padding: 1.5rem 0;-->
+    <!--        }-->
+    <!--        .form-control {-->
+    <!--            border-radius: 0;-->
+    <!--            border-color: #dfe2e5;-->
+    <!--        }-->
+    <!--        .btn-primary {-->
+    <!--            border-radius: 0;-->
+    <!--            background-color: #007bff;-->
+    <!--            border-color: #007bff;-->
+    <!--        }-->
+    <!--        .btn-primary:hover {-->
+    <!--            background-color: #0056b3;-->
+    <!--            border-color: #0056b3;-->
+    <!--        }-->
+    <!--    </style>-->
+</head>
+{% endblock %}
+
+{% block nav %}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 registration-container">
+            <div class="card">
+                <div class="card-header">
+                    <h3>User Registration</h3>
+                </div>
+                {% if messages %}
+                {% for message in messages %}
+                <div id="message-{{ forloop.counter }}"
+                     {% if message.tags %}
+                     class="text-center alert alert-{% if message.tags != 'error' %}{{ message.tags }}{% else %}danger{% endif %}"
+                     {% endif %}
+                     role="alert">
+                    {{ message }}
+                </div>
+                <script>
+                    // Hide the message after 5 seconds (5000 milliseconds)
+                    setTimeout(function() {
+                        var messageElement = document.getElementById('message-{{ forloop.counter }}');
+                        if (messageElement) {
+                            messageElement.style.display = 'none';
+                        }
+                    }, 2000);
+                </script>
+                {% endfor %}
+                {% endif %}
+
+
+                <div class="card-body">
+                    <form action="/register/" method="post" autocomplete="on">
+
+                        {% csrf_token %}
+
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" class="form-control" id="username" name="username"
+                                   placeholder="Enter your username" required>
+                        </div>
+                        <div class="form-group mt-2">
+                            <label for="firstName">First Name</label>
+                            <input type="text" class="form-control" id="firstName" name="firstName"
+                                   placeholder="Enter your first name" required>
+                        </div>
+                        <div class="form-group mt-2">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" class="form-control" id="lastName" name="lastName"
+                                   placeholder="Enter your last name" required>
+                        </div>
+                        <div class="form-group mt-2">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" name="email"
+                                   placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group mt-2">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" name="password"
+                                   placeholder="Enter your password" required>
+                        </div>
+                        <div class="form-group mt-2">
+                            <label for="confirmPassword">Confirm Password</label>
+                            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
+                                   placeholder="Confirm your password" required>
+                        </div>
+                        <div class="d-grid mt-2">
+                            <button type="submit" class="btn btn-primary btn-block">Register</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+<!-- Footer-->
+<footer class="bg-light py-5">
+    <div class="container px-4 px-lg-5">
+        <div class="small text-center text-muted">Copyright &copy; 2023 - Company Name</div>
+    </div>
+</footer>
+{% endblock %}
+
+{% block js %}
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+{% endblock %}
