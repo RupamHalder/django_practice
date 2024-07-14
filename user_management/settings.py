@@ -25,6 +25,9 @@ SECRET_KEY = 'django-insecure-b6*ltg67iufjx!)eo=%eo6rw))ud0uh@n$l1ckff56@ic#%0sn
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# Get the port from the environment variable
+PORT = os.getenv('PORT', '8000')
+
 ALLOWED_HOSTS = ['django-practice-y238.onrender.com']
 
 
