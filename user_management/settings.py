@@ -26,9 +26,9 @@ SECRET_KEY = 'django-insecure-b6*ltg67iufjx!)eo=%eo6rw))ud0uh@n$l1ckff56@ic#%0sn
 DEBUG = True
 
 # Get the port from the environment variable
-PORT = os.getenv('PORT', '8000')
+PORT = os.environ.get('PORT', '5000')
 
-ALLOWED_HOSTS = ['django-practice-y238.onrender.com']
+ALLOWED_HOSTS = ['django-practice-y238.onrender.com', '0.0.0.0']
 
 
 # Application definition
